@@ -1,0 +1,175 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+body {
+  background: #5863f8;
+  font-family: 'Sen', sans-serif;
+  padding: 30px 20px;
+  font-size: 16px;
+}
+
+li,
+p,
+label {
+  font-size: 0.9375rem;
+}
+
+ul {
+  margin-left: 0.875rem;
+}
+
+#calculator,
+#errors {
+  background: white;
+  border-radius: 10px;
+}
+
+#errors {
+  margin: 20px 0;
+}
+
+#calculator header,
+#errors header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+#calculator header {
+  background: #e3e4fe;
+}
+
+#errors header {
+  background: #f8bcc2;
+}
+
+.shadow {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  padding: 20px;
+}
+
+#info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6b7280;
+  margin-bottom: 1.875rem;
+}
+
+#info-icon {
+  margin-right: 6px;
+  width: 20px;
+  height: 20px;
+}
+
+#info-text {
+  font-size: 0.875rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: block;
+  width: 100%;
+}
+
+.input-box {
+  display: block;
+  position: relative;
+}
+
+.unit-right {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 10;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+form #buttons-group {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+#buttons-group button {
+  padding: 14px;
+  width: 100%;
+  border: none;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#calculate-btn {
+  background: #5dd9c1;
+  color: black;
+}
+
+#reset-btn {
+  background: #fce8eb;
+  color: #db5461;
+}
+
+#form-validation,
+#result {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.error-border {
+  border: 1px solid red;
+}
+
+.container {
+  padding: 20px;
+}
+
+.disable {
+  opacity: 0.5;
+}
+
+.disable:hover {
+  cursor: not-allowed;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <title>Bill Splitter</title>
+</head>
+
+<body>
+    <main id="main">
+        <section id="calculator" class="shadow">
+            <header>
+                <h5>Split your bills!</h5>
+            </header>
+            <form id="calculation">
+                <div id="info">
+                    <img id="info-icon" src="assets/info.svg" alt="Info icon">
+                    <small id="info-text">All inputs must be in number format</small>
+                </div>
+                <div class="grid-container">
+                    <label for="billAmount">How much was your bill?</label>
+                    <input name="billAmount" id="billAmount" type="text" placeholder="50.00" minlength="1" required>
+                    <label for="tipAmount">How much do you want to tip?</label>
+                    <div class="input-box">
+                        <input name="tipAmount" id="tipAmount" type="text" placeholder="Usually 10-15" minlength="1"
+                            required>
+                        <span class="unit-right">%</span>
+                    </div>
+                    <label for="peopleAmount">How many people are sharing the bill?</label>
+                    <div class="input-box">
+                        <input name="peopleAmount" id="peopleAmount" type="text" placeholder="5" minlength="1" required>
+                        <span class="unit-right">people</span>
+                    </div>
+                </div>
+                <div id="buttons-group">
+                    <button type="submit" id="calculate-btn" class="disable">Calculate</button>
+                    <button type="reset" id="reset-btn">Reset</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

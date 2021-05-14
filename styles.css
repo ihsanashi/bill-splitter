@@ -16,15 +16,31 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+/* variables */
+:root {
+  --bg-blue: #5863f8;
+  --bg-header: #e3e4fe;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --green-success: #5dd9c1;
+  --red-danger: #db5461;
+  --red-danger-fade: #fce8eb;
+}
+/* variables */
+
 body {
-  background: #5863f8;
+  background: var(--bg-blue);
   font-family: 'Sen', sans-serif;
   padding: 30px 20px;
   font-size: 16px;
 }
 
+p {
+  font-size: 1rem;
+}
+
 li,
-p,
 label {
   font-size: 0.9375rem;
 }
@@ -33,18 +49,12 @@ ul {
   margin-left: 0.875rem;
 }
 
-#calculator,
-#errors {
+#calculator {
   background: white;
   border-radius: 10px;
 }
 
-#errors {
-  margin: 20px 0;
-}
-
-#calculator header,
-#errors header {
+#calculator header {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 20px 0;
@@ -54,11 +64,7 @@ ul {
 }
 
 #calculator header {
-  background: #e3e4fe;
-}
-
-#errors header {
-  background: #f8bcc2;
+  background: var(--bg-header);
 }
 
 .shadow {
@@ -73,7 +79,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #6b7280;
+  color: var(--gray-500);
   margin-bottom: 1.875rem;
 }
 
@@ -90,15 +96,22 @@ form {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  column-gap: 20px;
+  margin: 1.875rem 0;
 }
 
-input {
+.grid-container label {
+  color: var(--gray-800);
+}
+
+.grid-container input {
   padding: 10px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: block;
   width: 100%;
+  margin-bottom: 0.25rem;
+  position: relative;
 }
 
 .input-box {
@@ -114,7 +127,7 @@ input {
   z-index: 10;
   font-size: 0.8125rem;
   font-weight: 700;
-  color: #374151;
+  color: var(--gray-700);
 }
 
 form #buttons-group {
@@ -140,17 +153,21 @@ button:hover {
 }
 
 #calculate-btn {
-  background: #5dd9c1;
+  background: var(--green-success);
   color: black;
 }
 
 #reset-btn {
-  background: #fce8eb;
-  color: #db5461;
+  background: var(--red-danger-fade);
+  color: var(--red-danger);
 }
 
 #form-validation,
 #result {
+  display: block;
+}
+
+.block {
   display: block;
 }
 
@@ -160,6 +177,12 @@ button:hover {
 
 .error-border {
   border: 1px solid red;
+}
+
+.error-text {
+  font-size: 0.8125rem;
+  color: red;
+  grid-column: 2 / 3;
 }
 
 .container {

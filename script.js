@@ -14,15 +14,17 @@ const people = document.getElementById('peopleAmount');
 const calculateBtn = document.getElementById('calculate-btn');
 const resetBtn = document.getElementById('reset-btn');
 
+const billSmallText = document.createElement('small');
+const tipSmallText = document.createElement('small');
+const peopleSmallText = document.createElement('small');
+
+const notNumberMsg = 'Input value must be a number';
+
 let isBillValid = false;
 let isTipValid = false;
 let isPeopleValid = false;
 
-let errors = [];
-
 form.addEventListener('change', () => {
-  console.log(errors);
-
   if (isBillValid && isTipValid && isPeopleValid) {
     calculateBtn.classList.remove('disable');
     calculateBtn.disabled = false;
@@ -44,29 +46,29 @@ function calculateResult() {
 }
 
 bill.addEventListener('change', (e) => {
-  const notNumberMsg = 'Bill input must be a number';
   const invalidNumberMsg =
     'Bill amount must be a positive value that is more than 0';
 
   if (isNaN(e.target.value)) {
     e.target.value = '';
-    if (errors.includes(notNumberMsg) === false) {
-      errors.push(notNumberMsg);
-      bill.classList.add('error-border');
-      isBillValid = false;
-    }
+
+    billSmallText.textContent = notNumberMsg;
+    billSmallText.classList.add('block', 'error-text');
+    bill.insertAdjacentElement('afterend', billSmallText);
+    bill.classList.add('error-border');
+    isBillValid = false;
   } else if (e.target.value < 0) {
     e.target.value = '';
-    if (errors.includes(invalidNumberMsg) === false) {
-      errors.push(invalidNumberMsg);
-      bill.classList.add('error-border');
-      isBillValid = false;
-    }
+
+    billSmallText.textContent = invalidNumberMsg;
+    billSmallText.classList.add('block', 'error-text');
+    bill.insertAdjacentElement('afterend', billSmallText);
+    bill.classList.add('error-border');
+    isBillValid = false;
   } else {
     e.target.value = Number(e.target.value).toString();
-    errors = errors.filter((val) => val !== notNumberMsg);
-    errors = errors.filter((val) => val !== invalidNumberMsg);
     bill.classList.remove('error-border');
+    billSmallText.remove();
     isBillValid = true;
   }
 
@@ -74,28 +76,28 @@ bill.addEventListener('change', (e) => {
 });
 
 tip.addEventListener('change', (e) => {
-  const notNumberMsg = 'Tip input must be a number';
   const invalidNumberMsg = 'Please stick to a number between 0 and 100!';
 
   if (isNaN(e.target.value)) {
     e.target.value = '';
-    if (errors.includes(notNumberMsg) === false) {
-      errors.push(notNumberMsg);
-      tip.classList.add('error-border');
-      isTipValid = false;
-    }
+
+    tipSmallText.textContent = notNumberMsg;
+    tipSmallText.classList.add('block', 'error-text');
+    tip.insertAdjacentElement('afterend', tipSmallText);
+    tip.classList.add('error-border');
+    isTipValid = false;
   } else if (e.target.value < 0 || e.target.value > 100) {
     e.target.value = '';
-    if (errors.includes(invalidNumberMsg) === false) {
-      errors.push(invalidNumberMsg);
-      tip.classList.add('error-border');
-      isTipValid = false;
-    }
+
+    tipSmallText.textContent = invalidNumberMsg;
+    tipSmallText.classList.add('block', 'error-text');
+    tip.insertAdjacentElement('afterend', tipSmallText);
+    tip.classList.add('error-border');
+    isTipValid = false;
   } else {
     e.target.value = Number(e.target.value).toString();
-    errors = errors.filter((val) => val !== notNumberMsg);
-    errors = errors.filter((val) => val !== invalidNumberMsg);
     tip.classList.remove('error-border');
+    tipSmallText.remove();
     isTipValid = true;
   }
 
@@ -103,29 +105,29 @@ tip.addEventListener('change', (e) => {
 });
 
 people.addEventListener('change', (e) => {
-  const notNumberMsg = 'People input must be a number';
-  const invalidNumberMsg = 'People input has to be a positive whole number';
+  const invalidNumberMsg =
+    'People input has to be a positive whole number that is higher than 0';
 
   if (isNaN(e.target.value)) {
     e.target.value = '';
-    if (errors.includes(notNumberMsg) === false) {
-      errors.push(notNumberMsg);
-      people.classList.add('error-border');
-      isPeopleValid = false;
-    }
-  } else if (e.target.value < 0 || e.target.value % 1 !== 0) {
+
+    peopleSmallText.textContent = notNumberMsg;
+    peopleSmallText.classList.add('block', 'error-text');
+    people.insertAdjacentElement('afterend', peopleSmallText);
+    people.classList.add('error-border');
+    isPeopleValid = false;
+  } else if (e.target.value <= 0 || e.target.value % 1 !== 0) {
     e.target.value = '';
-    if (errors.includes(invalidNumberMsg) === false) {
-      errors.push(invalidNumberMsg);
-      people.classList.add('error-border');
-      isPeopleValid = false;
-    }
+
+    peopleSmallText.textContent = invalidNumberMsg;
+    peopleSmallText.classList.add('block', 'error-text');
+    people.insertAdjacentElement('afterend', peopleSmallText);
+    people.classList.add('error-border');
+    isPeopleValid = false;
   } else {
     e.target.value = Number(e.target.value).toString();
-    errors = errors.filter((val) => val !== notNumberMsg);
-    errors = errors.filter((val) => val !== invalidNumberMsg);
-    // so splice is a very dangerous operation jfc
     people.classList.remove('error-border');
+    peopleSmallText.remove();
     isPeopleValid = true;
   }
 
@@ -133,15 +135,15 @@ people.addEventListener('change', (e) => {
 });
 
 resetBtn.addEventListener('click', () => {
-  errors = [];
   bill.classList.remove('error-border');
   tip.classList.remove('error-border');
   people.classList.remove('error-border');
   isBillValid = false;
   isTipValid = false;
   isPeopleValid = false;
+  billSmallText.remove();
+  tipSmallText.remove();
+  peopleSmallText.remove();
   calculateBtn.disabled = true;
   calculateBtn.classList.add('disable');
-  document.contains(errorSection) ? main.removeChild(errorSection) : '';
-  document.contains(errorUl) ? errorContainer.removeChild(errorUl) : '';
 });

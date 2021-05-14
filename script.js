@@ -18,6 +18,31 @@ const billSmallText = document.createElement('small');
 const tipSmallText = document.createElement('small');
 const peopleSmallText = document.createElement('small');
 
+const resultSection = document.createElement('section');
+const resultContainer = document.createElement('div');
+const resultHeader = document.createElement('header');
+const resultHeaderText = document.createElement('h5');
+const resultDateText = document.createElement('p');
+const resultHeaderBorder = document.createElement('div');
+
+const resultRowDiv = document.createElement('div');
+
+const eachTipDiv = document.createElement('div');
+const eachTipTitle = document.createElement('p');
+const eachTipValue = document.createElement('p');
+
+const totalTipDiv = document.createElement('div');
+const totalTipTitle = document.createElement('p');
+const totalTipValue = document.createElement('p');
+
+const eachPersonDiv = document.createElement('div');
+const eachPersonTotalTitle = document.createElement('p');
+const eachPersonTotalValue = document.createElement('p');
+
+const allinTotalDiv = document.createElement('div');
+const allinTotalTitle = document.createElement('p');
+const allinTotalValue = document.createElement('p');
+
 const notNumberMsg = 'Input value must be a number';
 
 let isBillValid = false;
@@ -42,7 +67,81 @@ calculateBtn.addEventListener('click', (e) => {
 });
 
 function calculateResult() {
-  console.log('Valid form');
+  const datetime = new Date();
+  let totalTips = (Number(bill.value) * Number(tip.value)) / 100;
+  let eachTip = totalTips / Number(people.value);
+  let allInTotal = totalTips + Number(bill.value);
+  let eachTotal = allInTotal / Number(people.value);
+
+  resultHeaderText.textContent = 'Result';
+  resultDateText.textContent = datetime
+    .toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    })
+    .replace(/ /g, ' ');
+
+  resultRowDiv.classList.add('row');
+
+  eachTipTitle.textContent = 'Tip for each person';
+  eachTipTitle.classList.add('regular-title', 'text-left');
+  eachTipValue.textContent = (Math.round(eachTip * 100) / 100).toFixed(2);
+  eachTipValue.classList.add('bold-title', 'text-right');
+
+  totalTipTitle.textContent = 'Total in tips';
+  totalTipTitle.classList.add('regular-title', 'text-left');
+  totalTipValue.textContent = (Math.round(totalTips * 100) / 100).toFixed(2);
+  totalTipValue.classList.add('bold-title', 'text-right');
+
+  eachPersonTotalTitle.textContent = 'Total for each person';
+  eachPersonTotalTitle.classList.add('regular-title', 'text-left');
+  eachPersonTotalValue.textContent = (
+    Math.round(eachTotal * 100) / 100
+  ).toFixed(2);
+  eachPersonTotalValue.classList.add('bold-title', 'text-right');
+
+  allinTotalTitle.textContent = 'All-in total';
+  allinTotalTitle.classList.add('bold-title', 'text-left');
+  allinTotalValue.textContent = (Math.round(allInTotal * 100) / 100).toFixed(2);
+  allinTotalValue.classList.add('bold-title', 'text-right');
+
+  resultSection.id = 'result';
+  resultSection.classList.add('shadow');
+  resultContainer.classList.add('container');
+  resultDateText.classList.add('date');
+  resultHeaderBorder.classList.add('border');
+
+  resultHeader.appendChild(resultHeaderText);
+  resultHeader.appendChild(resultDateText);
+  resultHeader.appendChild(resultHeaderBorder);
+  resultContainer.appendChild(resultHeader);
+  resultSection.appendChild(resultContainer);
+
+  eachTipDiv.classList.add('row');
+  eachTipDiv.appendChild(eachTipTitle);
+  eachTipDiv.appendChild(eachTipValue);
+  resultContainer.appendChild(eachTipDiv);
+
+  totalTipDiv.classList.add('row');
+  totalTipDiv.appendChild(totalTipTitle);
+  totalTipDiv.appendChild(totalTipValue);
+  resultContainer.appendChild(totalTipDiv);
+
+  eachPersonDiv.classList.add('row');
+  eachPersonDiv.appendChild(eachPersonTotalTitle);
+  eachPersonDiv.appendChild(eachPersonTotalValue);
+  resultContainer.appendChild(eachPersonDiv);
+
+  allinTotalDiv.classList.add('row');
+  allinTotalDiv.appendChild(allinTotalTitle);
+  allinTotalDiv.appendChild(allinTotalValue);
+  resultContainer.appendChild(allinTotalDiv);
+
+  main.appendChild(resultSection);
 }
 
 bill.addEventListener('change', (e) => {
@@ -57,7 +156,7 @@ bill.addEventListener('change', (e) => {
     bill.insertAdjacentElement('afterend', billSmallText);
     bill.classList.add('error-border');
     isBillValid = false;
-  } else if (e.target.value < 0) {
+  } else if (e.target.value <= 0) {
     e.target.value = '';
 
     billSmallText.textContent = invalidNumberMsg;
@@ -107,6 +206,7 @@ tip.addEventListener('change', (e) => {
 people.addEventListener('change', (e) => {
   const invalidNumberMsg =
     'People input has to be a positive whole number that is higher than 0';
+  const tooManyPeopleMsg = 'Please stick to a number between 1 and 10';
 
   if (isNaN(e.target.value)) {
     e.target.value = '';
@@ -124,6 +224,13 @@ people.addEventListener('change', (e) => {
     people.insertAdjacentElement('afterend', peopleSmallText);
     people.classList.add('error-border');
     isPeopleValid = false;
+  } else if (e.target.value > 10) {
+    e.target.value = '';
+
+    peopleSmallText.textContent = tooManyPeopleMsg;
+    peopleSmallText.classList.add('block', 'error-text');
+    people.insertAdjacentElement('afterend', peopleSmallText);
+    people.classList.add('error-border');
   } else {
     e.target.value = Number(e.target.value).toString();
     people.classList.remove('error-border');
@@ -144,6 +251,7 @@ resetBtn.addEventListener('click', () => {
   billSmallText.remove();
   tipSmallText.remove();
   peopleSmallText.remove();
+  resultSection.remove();
   calculateBtn.disabled = true;
   calculateBtn.classList.add('disable');
 });

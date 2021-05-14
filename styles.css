@@ -36,6 +36,11 @@ body {
   font-size: 16px;
 }
 
+main {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
 p {
   font-size: 1rem;
 }

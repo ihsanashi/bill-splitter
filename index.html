@@ -23,19 +23,26 @@
                     <img id="info-icon" src="assets/info.svg" alt="Info icon">
                     <small id="info-text">All inputs must be in number format</small>
                 </div>
-                <div class="grid-container">
-                    <label for="billAmount">How much was your bill?</label>
-                    <input name="billAmount" id="billAmount" type="text" placeholder="50.00" minlength="1" required>
-                    <label for="tipAmount">How much do you want to tip?</label>
-                    <div class="input-box">
-                        <input name="tipAmount" id="tipAmount" type="text" placeholder="Usually 10-15" minlength="1"
-                            required>
-                        <span class="unit-right">%</span>
+                <div class="details">
+                    <div class="grid-container">
+                        <label for="billAmount">How much was your bill?</label>
+                        <input name="billAmount" id="billAmount" type="text" placeholder="50.00" minlength="1" required>
                     </div>
-                    <label for="peopleAmount">How many people are sharing the bill?</label>
-                    <div class="input-box">
-                        <input name="peopleAmount" id="peopleAmount" type="text" placeholder="5" minlength="1" required>
-                        <span class="unit-right">people</span>
+                    <div class="grid-container">
+                        <label for="tipAmount">How much do you want to tip?</label>
+                        <div class="input-box">
+                            <input name="tipAmount" id="tipAmount" type="text" placeholder="Usually 10-15" minlength="1"
+                                required>
+                            <span class="unit-right">%</span>
+                        </div>
+                    </div>
+                    <div class="grid-container">
+                        <label for="peopleAmount">How many people are sharing the bill?</label>
+                        <div class="input-box">
+                            <input name="peopleAmount" id="peopleAmount" type="text" placeholder="5" minlength="1"
+                                required>
+                            <span class="unit-right">people</span>
+                        </div>
                     </div>
                 </div>
                 <div id="buttons-group">

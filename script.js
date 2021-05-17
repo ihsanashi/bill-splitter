@@ -90,24 +90,24 @@ function calculateResult() {
   eachTipTitle.textContent = 'Tip for each person';
   eachTipTitle.classList.add('regular-title', 'text-left');
   eachTipValue.textContent = (Math.round(eachTip * 100) / 100).toFixed(2);
-  eachTipValue.classList.add('bold-title', 'text-right');
+  eachTipValue.classList.add('regular-title', 'text-right');
 
   totalTipTitle.textContent = 'Total in tips';
   totalTipTitle.classList.add('regular-title', 'text-left');
   totalTipValue.textContent = (Math.round(totalTips * 100) / 100).toFixed(2);
-  totalTipValue.classList.add('bold-title', 'text-right');
+  totalTipValue.classList.add('regular-title', 'text-right');
+
+  allinTotalTitle.textContent = 'All-in total';
+  allinTotalTitle.classList.add('regular-title', 'text-left');
+  allinTotalValue.textContent = (Math.round(allInTotal * 100) / 100).toFixed(2);
+  allinTotalValue.classList.add('regular-title', 'text-right');
 
   eachPersonTotalTitle.textContent = 'Total for each person';
-  eachPersonTotalTitle.classList.add('regular-title', 'text-left');
+  eachPersonTotalTitle.classList.add('bold-title', 'text-left');
   eachPersonTotalValue.textContent = (
     Math.round(eachTotal * 100) / 100
   ).toFixed(2);
   eachPersonTotalValue.classList.add('bold-title', 'text-right');
-
-  allinTotalTitle.textContent = 'All-in total';
-  allinTotalTitle.classList.add('bold-title', 'text-left');
-  allinTotalValue.textContent = (Math.round(allInTotal * 100) / 100).toFixed(2);
-  allinTotalValue.classList.add('bold-title', 'text-right');
 
   resultSection.id = 'result';
   resultSection.classList.add('shadow');
@@ -131,15 +131,15 @@ function calculateResult() {
   totalTipDiv.appendChild(totalTipValue);
   resultContainer.appendChild(totalTipDiv);
 
-  eachPersonDiv.classList.add('row');
-  eachPersonDiv.appendChild(eachPersonTotalTitle);
-  eachPersonDiv.appendChild(eachPersonTotalValue);
-  resultContainer.appendChild(eachPersonDiv);
-
   allinTotalDiv.classList.add('row');
   allinTotalDiv.appendChild(allinTotalTitle);
   allinTotalDiv.appendChild(allinTotalValue);
   resultContainer.appendChild(allinTotalDiv);
+
+  eachPersonDiv.classList.add('row');
+  eachPersonDiv.appendChild(eachPersonTotalTitle);
+  eachPersonDiv.appendChild(eachPersonTotalValue);
+  resultContainer.appendChild(eachPersonDiv);
 
   main.appendChild(resultSection);
 }
